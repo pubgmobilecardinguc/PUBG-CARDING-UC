@@ -1,0 +1,305 @@
+<div id="uc-store">
+<style>
+#uc-store{background:#020b1b;color:#edf5ff;font-family:Arial,sans-serif;padding:18px;max-width:1200px;margin:0 auto;border-radius:12px;box-sizing:border-box;overflow:hidden}
+#uc-store *{box-sizing:border-box}
+#uc-store.checkout-mode .hero,#uc-store.checkout-mode .notice,#uc-store.checkout-mode>h2,#uc-store.checkout-mode>.sub,#uc-store.checkout-mode>.packages{display:none!important}
+#uc-store .nav{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #18304b;padding:7px 0 16px}
+#uc-store .logo{font-weight:900;font-size:20px;line-height:1;border:2px solid #fff;padding:6px;text-align:center}
+#uc-store .logo small{font-size:10px}
+#uc-store .navlinks{font-size:12px;color:#49baff}
+#uc-store .secure{color:#42e4c0;border:1px solid #07575d;border-radius:9px;padding:9px;font-size:11px;white-space:nowrap}
+#uc-store .hero{margin:17px 0;background:radial-gradient(ellipse at 70% 35%,#104778,#071b32 62%,#061326);border:1px solid #17456b;border-radius:13px;overflow:hidden;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;min-height:235px}
+#uc-store .heroText{padding:24px}
+#uc-store .eyebrow{font-size:12px;font-weight:bold;letter-spacing:1px}
+#uc-store h1{font-size:clamp(27px,4vw,44px);line-height:1.04;margin:8px 0;color:#ffd44d;text-transform:uppercase}
+#uc-store .hero p{color:#bfd5e9;font-size:14px;line-height:1.6}
+#uc-store .heroArt{height:230px;display:flex;align-items:center;justify-content:center;padding:14px}
+#uc-store .heroArt img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 15px #d69e2b)}
+#uc-store .notice{background:#211c0c;border:1px solid #80621c;color:#ffe4a4;padding:12px;border-radius:9px;font-size:12px;line-height:1.6;margin:16px 0}
+#uc-store h2{font-size:21px;margin:20px 0 5px}
+#uc-store .sub{font-size:12px;color:#9bb5cf;margin-bottom:16px}
+#uc-store .packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+#uc-store .pack{background:linear-gradient(150deg,#09203a,#041226);border:1px solid #17446d;border-radius:12px;padding:14px 11px;text-align:center;min-width:0;box-shadow:inset 0 1px #ffffff08}
+#uc-store .ucimg{height:100px;width:100%;object-fit:contain;margin-bottom:4px;filter:drop-shadow(0 0 9px #c58c22)}
+#uc-store .pack h3{margin:5px 0 8px;font-size:18px}
+#uc-store .bonus{font-size:11px;color:#72c7ff;min-height:15px}
+#uc-store .price{font-weight:bold;color:#ffd343;font-size:18px;margin:12px 0}
+#uc-store button{border:0;border-radius:9px;padding:13px 10px;background:linear-gradient(100deg,#0759ff,#078cff);color:white;font-weight:bold;width:100%;cursor:pointer;font-size:13px}
+#uc-store button:active{transform:scale(.99)}
+#uc-store .panel{display:none;margin-top:22px;border:1px solid #164c7c;border-radius:13px;background:radial-gradient(ellipse at top right,#0a2340,#030d1f 65%);padding:20px}
+#uc-store .panel.active{display:block}
+#uc-store .step{display:inline-flex;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#149cff,#0755ff);align-items:center;justify-content:center;font-size:18px;font-weight:bold;margin-right:8px;box-shadow:0 0 12px #087cff55}
+#uc-store .summary{display:flex;align-items:center;gap:12px;background:#07172c;border:1px solid #163a5e;border-radius:9px;padding:12px;margin:17px 0}
+#uc-store .summary img{width:66px;height:60px;object-fit:contain}
+#uc-store .summary small{display:block;color:#9eb7d2;margin-bottom:4px;font-size:11px}
+#uc-store .summary strong{font-size:16px}
+#uc-store label{display:block;margin:15px 0 7px;font-size:13px;font-weight:bold}
+#uc-store input{width:100%;background:#031329;border:1px solid #24527a;border-radius:8px;padding:14px;color:white;font-size:15px;outline:none}
+#uc-store input:focus{border-color:#168eff}
+#uc-store .hint{font-size:12px;color:#a6bdd4;line-height:1.6;margin:9px 0 15px}
+#uc-store .back{background:#132941;margin-top:10px}
+#uc-store .paybox{background:#08162a;border:1px solid #234565;border-radius:9px;padding:14px;line-height:1.8;font-size:13px}
+#uc-store .amount{display:flex;justify-content:space-between;gap:10px;background:#211b0a;border:1px solid #866416;padding:12px;border-radius:8px;color:#ffda60;font-weight:bold;margin:12px 0}
+#uc-store .loading{text-align:center;padding:30px 10px}
+#uc-store .spinner{width:78px;height:78px;border:7px solid #12365a;border-top-color:#078cff;border-right-color:#ffd343;border-radius:50%;animation:ucspin 1s linear infinite;margin:10px auto 23px}
+#uc-store .loading h3{margin:12px 0}
+#uc-store .dots span{animation:ucdot 1.2s infinite;opacity:.2;font-size:25px;color:#168eff}
+#uc-store .dots span:nth-child(2){animation-delay:.2s}
+#uc-store .dots span:nth-child(3){animation-delay:.4s}
+@keyframes ucspin{to{transform:rotate(360deg)}}
+@keyframes ucdot{50%{opacity:1}}
+#uc-store .resultIcon{width:112px;height:112px;border-radius:50%;border:2px solid #ffd36a;background:radial-gradient(circle,#49350a,#07152b 72%);display:flex;align-items:center;justify-content:center;margin:22px auto;box-shadow:0 0 28px #bd8b2b55;color:#ffd36a}
+#uc-store .resultIcon .check{width:60px;height:60px;border:4px solid #ffd36a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:39px;font-weight:bold;line-height:1}
+#uc-store .resultTitle{text-align:center;color:#ffd34e;font-size:24px;font-weight:bold;letter-spacing:.5px}
+#uc-store .resultMsg{text-align:center;line-height:1.7;font-size:13px;color:#c0d3e7;max-width:650px;margin:12px auto 18px}
+#uc-store .receipt{margin:18px 0;border:1px solid #234361;border-radius:9px;padding:12px;background:#041226}
+#uc-store .receipt div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #142d47;padding:12px 0;font-size:12px}
+#uc-store .receipt div:last-child{border:0}
+#uc-store .receipt span{color:#9eb8d2}
+#uc-store .foot{text-align:center;color:#718ba7;font-size:11px;line-height:1.8;padding:24px 0 6px}
+@media(max-width:600px){
+#uc-store{padding:10px}
+#uc-store .hero{grid-template-columns:1fr}
+#uc-store .heroText{padding:20px 17px 0}
+#uc-store .heroArt{height:165px}
+#uc-store .packages{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+#uc-store .pack{padding:11px 8px}
+#uc-store .ucimg{height:82px}
+#uc-store .pack h3{font-size:16px}
+#uc-store .price{font-size:16px}
+#uc-store .panel{padding:14px}
+#uc-store .navlinks{font-size:10px}
+}
+</style>
+
+<header class="nav">
+  <div class="logo">PUBG<br><small>MOBILE</small></div>
+  <div class="navlinks">⌂ Home　 ♧ Support　 ▤ Terms</div>
+  <div class="secure">✦ Demo Store</div>
+</header>
+
+<section class="hero">
+  <div class="heroText">
+    <div class="eyebrow">PUBG MOBILE</div>
+    <h1>UC TOP-UP<br>STORE</h1>
+    <p>Choose your UC package and explore the gaming-style demo checkout.</p>
+    <div style="font-size:12px;color:#c1d7ec">⚡ Quick Flow　 ◆ Demo Mode　 ● Mobile Ready</div>
+  </div>
+  <div class="heroArt"><img class="heroUC" alt="Gold UC crate" loading="eager"></div>
+</section>
+
+<div class="notice">⚠ <b>Demo notice:</b> This is a test storefront only. It does not process or verify real payments and does not deliver UC.</div>
+
+<h2>💠 Select UC Package</h2>
+<div class="sub">Choose your preferred package below.</div>
+<div class="packages" id="ucPackages"></div>
+
+<section class="panel" id="playerPanel">
+  <h2><span class="step">1</span>Enter Player ID</h2>
+  <div class="sub">Enter an ID to continue through the demo.</div>
+  <div class="summary" id="playerSummary"></div>
+  <label for="playerId">PUBG Mobile Player ID</label>
+  <input id="playerId" placeholder="Enter your Player ID" maxlength="30">
+  <div class="hint">Make sure your Player ID is correct. This demo does not contact PUBG Mobile.</div>
+  <button id="continueBtn">Continue →</button>
+  <button class="back" id="backPackages">← Back to Packages</button>
+</section>
+
+<section class="panel" id="paymentPanel">
+  <h2><span class="step">2</span>Payment Details</h2>
+  <div class="sub">Demo payment instructions</div>
+  <div class="summary" id="paymentSummary"></div>
+  <div class="paybox">
+    <b style="color:#62e5a1">● Easypaisa Account (Demo)</b><br>
+    Account Name: <b id="accountName"></b><br>
+    Account Number: <b id="accountNumber"></b>
+  </div>
+  <div class="amount"><span>Demo Amount</span><span id="amountText"></span></div>
+  <div class="hint">Simulation only: do not send money based on this demo page. Enter a sample transaction ID to test the result screen.</div>
+  <label for="trxId">Sample Transaction ID</label>
+  <input id="trxId" placeholder="Enter a test transaction ID" maxlength="60">
+  <button id="submitTrx">Submit Transaction ID →</button>
+  <button class="back" id="backPlayer">← Back to Player ID</button>
+</section>
+
+<section class="panel" id="loadingPanel">
+  <div class="loading">
+    <div class="spinner"></div>
+    <h3 id="loadingTitle">Please wait...</h3>
+    <div class="dots"><span>•</span><span> •</span><span> •</span></div>
+    <p class="hint" id="loadingMessage">Loading demo screen</p>
+  </div>
+</section>
+
+<section class="panel" id="resultPanel">
+  <h2><span class="step">4</span>Demo Result</h2>
+  <div class="resultIcon" id="resultIcon"><span class="check">✓</span></div>
+  <div class="resultTitle" id="resultTitle">DEMO SUCCESSFUL</div>
+  <p class="resultMsg" id="resultMessage"></p>
+  <div class="receipt" id="receipt"></div>
+  <button id="backStore">Back to Store</button>
+</section>
+
+<footer class="foot">UC TOP-UP DEMO STORE<br>Test mode only • Not affiliated with PUBG MOBILE<br>No real payment verification or UC delivery</footer>
+</div>
+
+<script>
+(function(){
+const CONFIG={
+  accountName:"MUHAMMAD ARIF",
+  accountNumber:"03333656418",
+  testSuccessId:"56785297271",
+  packages:[
+    {uc:16200,bonus:"UC Package",price:5000},
+    {uc:32400,bonus:"300 + 25 bonus",price:10000},
+    {uc:64800,bonus:"600 + 60 bonus",price:15000},
+    {uc:130000,bonus:"1500 + 300 bonus",price:20000},
+    {uc:260000,bonus:"3000 + 850 bonus",price:25000},
+    {uc:520000,bonus:"6000 + 2100 bonus",price:30000}
+  ]
+};
+
+const UC_IMAGE="https://i.ibb.co/b5RThKXg/3292-removebg-preview.png";
+let selected=null,player="",transaction="",timer=null;
+const root=document.getElementById("uc-store");
+root.querySelector(".heroUC").src=UC_IMAGE;
+
+const money=n=>"Rs. "+Number(n).toLocaleString("en-PK");
+const imageTag=()=>'<img class="ucimg" src="'+UC_IMAGE+'" alt="Gold UC crate" loading="eager">';
+const summaryHTML=()=>'<img src="'+UC_IMAGE+'" alt="UC crate" loading="eager"><div><small>Selected Package</small><strong>'+selected.uc.toLocaleString("en-PK")+' UC</strong><small>'+money(selected.price)+'</small></div>';
+
+function show(id){
+  root.classList.add("checkout-mode");
+  root.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  const panel=document.getElementById(id);
+  panel.classList.add("active");
+  panel.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function hidePanels(){
+  root.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+}
+
+function safe(s){
+  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+const packages=document.getElementById("ucPackages");
+
+CONFIG.packages.forEach(pack=>{
+  const card=document.createElement("article");
+  card.className="pack";
+  card.innerHTML=imageTag()+
+    '<h3>'+pack.uc.toLocaleString("en-PK")+' UC</h3>'+
+    '<div class="bonus">'+pack.bonus+'</div>'+
+    '<div class="price">'+money(pack.price)+'</div>'+
+    '<button type="button">Select Package →</button>';
+
+  card.querySelector("button").addEventListener("click",()=>{
+    selected=pack;
+    document.getElementById("playerSummary").innerHTML=summaryHTML();
+
+    show("loadingPanel");
+    document.getElementById("loadingTitle").textContent="Loading Package...";
+    document.getElementById("loadingMessage").textContent="Preparing your demo checkout";
+
+    clearTimeout(timer);
+    timer=setTimeout(()=>show("playerPanel"),5000);
+  });
+
+  packages.appendChild(card);
+});
+
+document.getElementById("accountName").textContent=CONFIG.accountName;
+document.getElementById("accountNumber").textContent=CONFIG.accountNumber;
+
+document.getElementById("continueBtn").addEventListener("click",()=>{
+  player=document.getElementById("playerId").value.trim();
+
+  if(!player){
+    alert("Please enter a Player ID.");
+    return;
+  }
+
+  document.getElementById("paymentSummary").innerHTML=summaryHTML();
+  document.getElementById("amountText").textContent=money(selected.price);
+
+  show("loadingPanel");
+  document.getElementById("loadingTitle").textContent="Preparing Payment...";
+  document.getElementById("loadingMessage").textContent="Opening demo payment details";
+
+  clearTimeout(timer);
+  timer=setTimeout(()=>show("paymentPanel"),5000);
+});
+
+document.getElementById("submitTrx").addEventListener("click",()=>{
+  transaction=document.getElementById("trxId").value.trim();
+
+  if(!transaction){
+    alert("Please enter a sample transaction ID.");
+    return;
+  }
+
+  show("loadingPanel");
+  document.getElementById("loadingTitle").textContent="Transaction Verifying";
+  document.getElementById("loadingMessage").textContent="Demo simulation only. No payment provider is contacted.";
+
+  clearTimeout(timer);
+  timer=setTimeout(result,20000);
+});
+
+function result(){
+  const ok=transaction===CONFIG.testSuccessId;
+
+  document.getElementById("resultIcon").innerHTML=ok
+    ?'<span class="check">✓</span>'
+    :'<span style="font-size:54px;color:#ffbd79;font-weight:bold">!</span>';
+
+  document.getElementById("resultTitle").textContent=ok
+    ?"DEMO SUCCESSFUL"
+    :"DEMO VERIFICATION FAILED";
+
+  document.getElementById("resultTitle").style.color=ok
+    ?"#ffd34e"
+    :"#ffbd79";
+
+  document.getElementById("resultMessage").textContent=ok
+    ?"The sample test ID matched. This is a simulated result only; no payment was verified and no UC has been delivered."
+    :"The sample ID did not match the configured demo test ID. No real transaction was checked.";
+
+  document.getElementById("receipt").innerHTML=
+    '<div><span>Package</span><b>'+selected.uc.toLocaleString("en-PK")+' UC</b></div>'+
+    '<div><span>Player ID</span><b>'+safe(player)+'</b></div>'+
+    '<div><span>Sample Transaction ID</span><b>'+safe(transaction)+'</b></div>'+
+    '<div><span>Demo Amount</span><b>'+money(selected.price)+'</b></div>'+
+    '<div><span>Payment Status</span><b>'+(ok?"SIMULATED SUCCESS":"NOT VERIFIED")+'</b></div>';
+
+  show("resultPanel");
+}
+
+document.getElementById("backPackages").addEventListener("click",()=>{
+  clearTimeout(timer);
+  root.classList.remove("checkout-mode");
+  hidePanels();
+  document.getElementById("ucPackages").scrollIntoView({behavior:"smooth",block:"start"});
+});
+
+document.getElementById("backPlayer").addEventListener("click",()=>{
+  show("playerPanel");
+});
+
+document.getElementById("backStore").addEventListener("click",()=>{
+  clearTimeout(timer);
+  selected=null;
+  player="";
+  transaction="";
+  document.getElementById("playerId").value="";
+  document.getElementById("trxId").value="";
+  root.classList.remove("checkout-mode");
+  hidePanels();
+  document.getElementById("ucPackages").scrollIntoView({behavior:"smooth",block:"start"});
+});
+
+hidePanels();
+})();
+</script>
